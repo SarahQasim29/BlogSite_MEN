@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>NEWSROOM - Free Bootstrap Magazine Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/theme/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/theme/css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <!-- Topbar Start -->
+
+    <!-- Topbar End -->
+    <div class="container-fluid p-0 mb-3">
+
+        <div class="row align-items-center py-2 px-lg-5">
+            <div class="col-lg-4">
+                <a href="" class="navbar-brand d-none d-lg-block">
+                    <h1 class="m-0 display-5 text-uppercase"><span class="text-primary">My</span> Blog</h1>
+                </a>
+            </div>
+            <div class="col-lg-8 text-center text-lg-right">
+             </div>
+        </div>
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg bg-light navbar-light py-2 py-lg-0 px-lg-5">
+            <a href="" class="navbar-brand d-block d-lg-none">
+                <h1 class="m-0 display-5 text-uppercase"><span class="text-primary">News</span>Room</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav mr-auto py-0">
+                    <a href="/" class="nav-item nav-link ">Home</a>
+                    <a href="/blog" class="nav-item nav-link active">Blogs </a>
+
+                </div>
+
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="container">
+            <nav class="breadcrumb bg-transparent m-0 p-0">
+                <a class="breadcrumb-item" href="#">Home</a>
+                <a class="breadcrumb-item" href="#">Blog</a>
+<a class="breadcrumb-item" href="#">
+    <%= post.category %>
+</a>
+<span class="breadcrumb-item active">
+    <%= post.title %>
+</span>
+            </nav>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+
+    <!-- News With Sidebar Start -->
+    <div class="container-fluid py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- News Detail Start -->
+                    <div class="position-relative mb-3" style="position: relative; margin-bottom: 1rem;">
+                        <!-- Post Image -->
+                        <img src="<%= post.picture %>" style="width: 100%; height: auto; object-fit: cover;">
+                
+                        <!-- Post Details Below the Image -->
+                        <div style="background-color: white; padding: 1rem; border-radius: 0.25rem; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                            <!-- User Info, Likes, Comments, Category, and Tags in the Same Line -->
+                            <div style="display: flex; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+                                <!-- User Info -->
+                                <img src="<%= post.author.picture %>" style="border-radius: 50%; width: 40px; height: 40px; object-fit: cover; margin-right: 0.5rem;">
+                                <span style="color: #333; margin-right: 1rem;"><%= post.author.name %></span>
+                
+                                <!-- Likes Badge -->
+                                <span style="background-color: #dc3545; color: white; border-radius: 0.25rem; padding: 0.25rem 0.5rem; display: flex; align-items: center; margin-right: 0.5rem;">
+                                    <i class="fa fa-heart" style="margin-right: 0.25rem;"></i><%= post.likeCount %>
+                                </span>
+                
+                                <!-- Comments Badge -->
+                                <span style="background-color: #17a2b8; color: white; border-radius: 0.25rem; padding: 0.25rem 0.5rem; display: flex; align-items: center; margin-right: 0.5rem;">
+                                    <i class="fa fa-comment" style="margin-right: 0.25rem;"></i><%= post.commentCount %>
+                                </span>
+                
+                                <!-- Tags Badges with Icons -->
+                                <% if (post.tags && post.tags.length > 0) { %>
+                                    <% post.tags.forEach(tag => { %>
+                                        <% 
+                                        let badgeColor = '#ffc107'; // Default Yellow
+                                        let icon = 'fa-tag'; // Default Icon
+                                        if (tag === 'Important') { 
+                                            badgeColor = '#dc3545'; // Red
+                                            icon = 'fa-exclamation'; 
+                                        } else if (tag === 'New') { 
+                                            badgeColor = '#28a745'; // Green
+                                            icon = 'fa-star'; 
+                                        } else if (tag === 'Update') { 
+                                            badgeColor = '#ffc107'; // Yellow
+                                            icon = 'fa-arrow-up'; 
+                                        } else if (tag === 'Feature') { 
+                                            badgeColor = '#007bff'; // Blue
+                                            icon = 'fa-star'; 
+                                        } else if (tag === 'Trending') { 
+                                            badgeColor = '#fd7e14'; // Orange
+                                            icon = 'fa-chart-line'; 
+                                        } else if (tag === 'Warning') { 
+                                            badgeColor = '#ffc107'; // Yellow
+                                            icon = 'fa-exclamation-triangle'; 
+                                        }
+                                        %>
+                                        <span style="background-color:#17a2b8; color: white; border-radius: 0.25rem; padding: 0.2rem 0.4rem; font-size: 0.75rem; margin-right: 0.5rem; display: flex; align-items: center;">
+                                            <i class="fa <%= icon %>" style="margin-right: 0.25rem; font-size: 0.75rem;"></i><%= tag %>
+                                        </span>
+                                    <% }) %>
+                                <% } %>
+                                    
+                                <form id="like-form" action="/post/<%= post._id %>/like" method="POST" style="margin-left: auto;">
+                                    <button type="submit" id="like-btn" style="background-color: #f8f9fa; color: #333; border-radius: 0.25rem; padding: 0.25rem 0.5rem; display: flex; align-items: center; cursor: pointer; border: none;">
+                                        <i class="fa fa-sign-language" aria-hidden="true" style="margin-right: 0.25rem;"></i> Clap
+                                    </button>
+                                </form>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+                                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+                                    
+                                <script>
+                                document.getElementById('like-form').addEventListener('submit', function(event) {
+                                    event.preventDefault(); // Prevent form from submitting normally
+                                    
+                                    const form = event.target;
+                                
+                                    fetch(form.action, {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/x-www-form-urlencoded',
+                                            'X-Requested-With': 'XMLHttpRequest'
+                                        },
+                                        body: new URLSearchParams(new FormData(form)).toString()
+                                    })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.success) {
+                                            toastr.success(data.message); // Show success notification
+                                        } else {
+                                            toastr.warning(data.message); // Show warning notification
+                                        }
+                                    })
+                                    .catch(error => {
+                                        toastr.error('An error occurred'); // Show error notification
+                                    });
+                                });
+                                </script>
+                                
+                                
+                            </div>
+                
+                            <!-- Post Title -->
+                            <h2 style="color: #333; margin-bottom: 1rem;">
+                                <a href="/post/<%= post._id %>" style="color: #333; text-decoration: none;"><%= post.title %></a>
+                            </h2>
+                
+                            <!-- Post Content -->
+                            <div>
+                                <p style="color: #555;"><%= post.content %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- News Detail End -->
+                
+                    <!-- Comment List Start -->
+                    <div class="bg-light mb-3" style="padding: 30px;">
+                        <h3 class="mb-4"><%= post.commentCount %> Comments</h3>
+                        <% comments.forEach(comment => { %>
+                            <div class="media mb-4">
+                                <img src="<%= comment.user.picture || 'img/user.jpg' %>" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                <div class="media-body">
+                                    <h6><a href="#"><%= comment.user.name %></a> <small><i><%= new Date(comment.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }) %></i></small></h6>
+                                    <p><%= comment.content %></p>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                    <!-- Comment List End -->
+                
+                    <!-- Comment Form Start -->
+                    <div class="bg-light mb-3" style="padding: 30px;">
+                        <h3 class="mb-4">Leave a comment</h3>
+                        <form action="/post/<%= post._id %>/comment" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name *</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" cols="30" rows="5" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group mb-0">
+                                <input type="submit" value="Leave a comment" class="btn btn-primary font-weight-semi-bold py-2 px-3">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Comment Form End -->
+                </div>
+               
+                
+                <div class="col-lg-4 pt-3 pt-lg-0">
+                    <!-- Social Follow Start -->
+                    <div class="pb-3">
+                        <div class="bg-light py-3 px-4 mb-4 border rounded">
+                            <h3 class="m-0 text-uppercase font-weight-bold">About the Author</h3>
+                        </div>
+                        <div class="d-flex align-items-center p-3 border rounded bg-white shadow-sm mb-4">
+                            <!-- User Picture -->
+                            <img src="<%= post.author.picture %>" alt="User Picture" class="rounded-circle"
+                                style="width: 75px; height: 75px; object-fit: cover; margin-right: 15px;">
+                    
+                            <!-- User Info -->
+                            <div>
+                                <h5 class="m-0 font-weight-bold">
+                                    <%= post.author.name %>
+                                </h5>
+                                <p class="text-muted mb-1">
+                                    <%= post.author.bio %>
+                                </p>
+                                <small class="text-muted">
+                                    <i class="fa fa-envelope"></i> <%= post.author.email %>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <!-- Social Follow End -->
+
+                    <!-- Newsletter Start -->
+
+                    <!-- Newsletter End -->
+
+                    <!-- Ads Start -->
+                    <div class="mb-3 pb-3">
+                        <a href=""><img class="img-fluid" src="img/news-500x280-4.jpg" alt=""></a>
+                    </div>
+                    <!-- Ads End -->
+
+                    <!-- Popular News Start -->
+                    <div class="pb-3">
+                        <div class="bg-light py-2 px-4 mb-3">
+                            <h3 class="m-0">Related Posts</h3>
+                        </div>
+
+                        <% relatedPosts.forEach(relatedPost=> { %>
+                            <div class="d-flex mb-3">
+                                <img src="<%= relatedPost.picture %>"
+                                    style="width: 100px; height: 100px; object-fit: cover;">
+                                <div class="w-100 d-flex flex-column justify-content-center bg-light px-3"
+                                    style="height: 100px;">
+                                    <div class="mb-1" style="font-size: 13px;">
+                                        <a href="">
+                                            <%= relatedPost.category %>
+                                        </a>
+                                        <span class="px-1">/</span>
+                                    </div>
+                                    <a class="h6 m-0" href="/post/<%= relatedPost._id %>">
+                                        <%= relatedPost.title %>
+                                    </a>
+
+                                    <!-- Display tags as badges -->
+                                    <div class="mt-2">
+                                        <% relatedPost.tags.forEach(tag=> { %>
+                                            <span class="badge rounded badge-warning color:white;">
+                                                <%= tag %>
+                                            </span>
+                                            <% }) %>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+
+                    <!-- Popular News End -->
+
+                    <!-- Tags Start -->
+
+                    <!-- Tags End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- News With Sidebar End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-light pt-5 px-sm-3 px-md-5">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <a href="index.html" class="navbar-brand">
+                    <h1 class="mb-2 mt-n2 display-5 text-uppercase"><span class="text-primary">News</span>Room</h1>
+                </a>
+                <p>Volup amet magna clita tempor. Tempor sea eos vero ipsum. Lorem lorem sit sed elitr sed kasd et</p>
+                <div class="d-flex justify-content-start mt-4">
+                    <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                        href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                        href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                        href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                        href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                        href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="font-weight-bold mb-4">Categories</h4>
+                <div class="d-flex flex-wrap m-n1">
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Politics</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Business</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Corporate</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Sports</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Health</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Education</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Science</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Technology</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Foods</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Entertainment</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Travel</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Lifestyle</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="font-weight-bold mb-4">Tags</h4>
+                <div class="d-flex flex-wrap m-n1">
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Politics</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Business</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Corporate</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Sports</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Health</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Education</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Science</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Technology</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Foods</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Entertainment</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Travel</a>
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">Lifestyle</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="font-weight-bold mb-4">Quick Links</h4>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right text-dark mr-2"></i>About</a>
+                    <a class="text-secondary mb-2" href="#"><i
+                            class="fa fa-angle-right text-dark mr-2"></i>Advertise</a>
+                    <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right text-dark mr-2"></i>Privacy &
+                        policy</a>
+                    <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right text-dark mr-2"></i>Terms &
+                        conditions</a>
+                    <a class="text-secondary" href="#"><i class="fa fa-angle-right text-dark mr-2"></i>Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid py-4 px-sm-3 px-md-5">
+        <p class="m-0 text-center">
+            &copy; <a class="font-weight-bold" href="#">Your Site Name</a>. All Rights Reserved.
+
+            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+            Designed by <a class="font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
+        </p>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-up"></i></a>
+
+     
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="/theme/lib/easing/easing.min.js"></script>
+    <script src="/theme/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="/theme/mail/jqBootstrapValidation.min.js"></script>
+    <script src="/theme/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/theme/js/main.js"></script>
+</body>
+
+</html>

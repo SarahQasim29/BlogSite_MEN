@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>NEWSROOM - Free Bootstrap Magazine Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/theme/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/theme/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+
+    <!-- Topbar End -->
+    <div class="container-fluid p-0 mb-3">
+
+        <div class="row align-items-center py-2 px-lg-5">
+            <div class="col-lg-4">
+                <a href="" class="navbar-brand d-none d-lg-block">
+                    <h1 class="m-0 display-5 text-uppercase"><span class="text-primary">My</span> Blog</h1>
+                </a>
+            </div>
+            <div class="col-lg-8 text-center text-lg-right">
+             </div>
+        </div>
+        
+
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg bg-light navbar-light py-2 py-lg-0 px-lg-5">
+            <a href="" class="navbar-brand d-block d-lg-none">
+                <h1 class="m-0 display-5 text-uppercase"><span class="text-primary">News</span>Room</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav mr-auto py-0">
+                    <a href="/" class="nav-item nav-link active">Home</a>
+                    <a href="/blog" class="nav-item nav-link">Blogs </a>
+
+                </div>
+
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Top News Slider Start -->
+
+    <!-- Top News Slider End -->
+
+
+    <!-- Main News Slider Start -->
+    <div class="container-fluid py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="owl-carousel owl-carousel-2 carousel-item-1 position-relative mb-3 mb-lg-0">
+                        <% posts.forEach(post=> { %>
+                            <div class="position-relative overflow-hidden" style="height: 435px;">
+                                <img class="img-fluid h-100" src="<%= post.picture %>" style="object-fit: cover;">
+                                <div class="overlay">
+                                    <div class="mb-1">
+                                        <a class="text-white" href="#">
+                                            <%= post.category %>
+                                        </a>
+                                        <span class="px-2 text-white">/</span>
+                                        <a class="text-white" href="#">
+                                            <%= new Date(post.date).toLocaleDateString() %>
+                                        </a>
+                                    </div>
+                                    <a class="h2 m-0 text-white font-weight-bold" href="/post/<%= post._id %>">
+                                        <%= post.title %>
+                                    </a>
+
+                                    <div class="d-flex align-items-center mt-2">
+                                        <!-- Likes Badge -->
+                                        <span class="badge custom-badge likes-badge">
+                                            <i class="fa fa-heart text-white"></i>
+                                            <%= post.likeCount %>
+                                        </span>
+
+                                        <!-- Comments Badge -->
+                                        <span class="badge custom-badge comments-badge ml-2">
+                                            <i class="fa fa-comment text-white"></i>
+                                            <%= post.commentCount %>
+                                        </span>
+
+                                        <!-- Tags Badges -->
+                                        <div class="ml-2">
+                                            <% if (post.tags && post.tags.length> 0) { %>
+                                                <% post.tags.forEach(tag=> { %>
+                                                    <% let badgeClass='custom-badge' ; %>
+                                                        <% if (tag==='Important' ) { %>
+                                                            <% badgeClass +=' red' ; %>
+                                                                <% } else if (tag==='New' ) { %>
+                                                                    <% badgeClass +=' green' ; %>
+                                                                        <% } else if (tag==='Update' ) { %>
+                                                                            <% badgeClass +=' yellow' ; %>
+                                                                                <% } else if (tag==='Feature' ) { %>
+                                                                                    <% badgeClass +=' purple' ; %>
+                                                                                        <% } else if (tag==='Trending' )
+                                                                                            { %>
+                                                                                            <% badgeClass +=' orange' ;
+                                                                                                %>
+                                                                                                <% } else if
+                                                                                                    (tag==='Warning' ) {
+                                                                                                    %>
+                                                                                                    <% badgeClass
+                                                                                                        +=' warning' ;
+                                                                                                        %>
+                                                                                                        <% } %>
+                                                                                                            <span
+                                                                                                                class="<%= badgeClass %>">
+                                                                                                                <%= tag
+                                                                                                                    %>
+                                                                                                            </span>
+                                                                                                            <% }) %>
+                                                                                                                <% } %>
+                                        </div>
+                                    </div>
+
+                                    <!-- User Info Section -->
+                                    <div class="mt-3 d-flex align-items-center">
+                                        <img src="<%= post.author.picture %>" class="rounded-circle"
+                                            style="width: 40px; height: 40px; object-fit: cover;">
+
+                                        <span class="ml-2 text-white">
+                                            <%= post.author.name %>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+                        <h3 class="m-0">Categories</h3>
+                    </div>
+                
+                    <!-- Technology Category -->
+                    <div class="position-relative overflow-hidden mb-3"
+                        style="height: 80px; background-image: url('https://images.pexels.com/photos/3861963/pexels-photo-3861963.jpeg'); background-size: cover; background-position: center;">
+                        <a href="#"
+                            class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
+                            Technology
+                        </a>
+                    </div>
+                
+                    <!-- Programming Category -->
+                    <div class="position-relative overflow-hidden mb-3"
+                        style="height: 80px; background-image: url('https://images.pexels.com/photos/267614/pexels-photo-267614.jpeg'); background-size: cover; background-position: center;">
+                        <a href="#"
+                            class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
+                            Programming
+                        </a>
+                    </div>
+                
+                    <!-- Writing Category -->
+                    <div class="position-relative overflow-hidden mb-3"
+                        style="height: 80px; background-image: url('https://images.pexels.com/photos/708441/pexels-photo-708441.jpeg'); background-size: cover; background-position: center;">
+                        <a href="#"
+                            class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
+                            Writing
+                        </a>
+                    </div>
+                
+                    <!-- Other Category -->
+                    <div class="position-relative overflow-hidden mb-3"
+                        style="height: 80px; background-image: url('https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg'); background-size: cover; background-position: center;">
+                        <a href="#"
+                            class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
+                            Other
+                        </a>
+                    </div>
+                </div>
+                
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main News Slider End -->
+
+
+    <!-- Featured News Slider Start -->
+    <div class="container-fluid py-3">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+                <h3 class="m-0">Featured</h3>
+            </div>
+            <div class="owl-carousel owl-carousel-2 carousel-item-4 position-relative">
+                <% posts.forEach(post=> { %>
+                    <div class="position-relative overflow-hidden" style="height: 300px;">
+                        <img class="img-fluid w-100 h-100" src="<%= post.picture %>" style="object-fit: cover;">
+                        <div class="overlay">
+                            <div class="mb-1" style="font-size: 13px;">
+                                <a class="text-white" href="#">
+                                    <%= post.category %>
+                                </a>
+                                <span class="px-1 text-white">/</span>
+                                <a class="text-white" href="#">
+                                    <%= new Date(post.date).toLocaleDateString() %>
+                                </a>
+                            </div>
+                            <a class="h4 m-0 text-white" href="/post/<%= post._id %>">
+                                <%= post.title %>
+                            </a>
+                            <div class="mt-2">
+                                <% if (post.tags && post.tags.length> 0) { %>
+                                    <% post.tags.forEach(tag=> { %>
+                                        <% let badgeClass='custom-badge' ; %>
+                                            <% if (tag==='Important' ) { %>
+                                                <% badgeClass +=' red' ; %>
+                                                    <% } else if (tag==='New' ) { %>
+                                                        <% badgeClass +=' green' ; %>
+                                                            <% } else if (tag==='Update' ) { %>
+                                                                <% badgeClass +=' yellow' ; %>
+                                                                    <% } else if (tag==='Feature' ) { %>
+                                                                        <% badgeClass +=' purple' ; %>
+                                                                            <% } else if (tag==='Trending' ) { %>
+                                                                                <% badgeClass +=' orange' ; %>
+                                                                                    <% } else if (tag==='Warning' ) { %>
+                                                                                        <% badgeClass +=' warning' ; %>
+                                                                                            <% } %>
+                                                                                                <span
+                                                                                                    class="<%= badgeClass %>">
+                                                                                                    <%= tag %>
+                                                                                                </span>
+                                                                                                <% }) %>
+                                                                                                    <% } %>
+                            </div>
+                            <!-- User Info Section -->
+
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+    <!-- Featured News Slider End -->
+
+
+    <!-- Category News Slider Start -->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <!-- Technology Posts Carousel -->
+                <div class="col-lg-6 py-3">
+                    <div class="bg-light py-2 px-4 mb-3">
+                        <h3 class="m-0">Technology</h3>
+                    </div>
+                    <div class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
+                        <% technologyPosts.forEach(post=> { %>
+                            <div class="position-relative">
+                                <img class="img-fluid w-100" src="<%= post.picture %>" style="object-fit: cover;">
+                                <div class="overlay position-relative bg-light">
+                                    <div class="mb-2" style="font-size: 13px;">
+                                        <a href="#">
+                                            <%= post.category %>
+                                        </a>
+                                        <span class="px-1">/</span>
+                                        <span>
+                                            <%= new Date(post.date).toDateString() %>
+                                        </span>
+                                    </div>
+                                    <a class="h4 m-0" href="/post/<%= post._id %>">
+                                        <%= post.title %>
+                                    </a>
+                                    <!-- Display post tags -->
+                                    <div class="mt-2">
+                                        <% if (post.tags && post.tags.length> 0) { %>
+                                            <% post.tags.forEach(tag=> { %>
+                                                <% let badgeClass='custom-badge' ; %>
+                                                    <% if (tag==='Important' ) { %>
+                                                        <% badgeClass +=' red' ; %>
+                                                            <% } else if (tag==='New' ) { %>
+                                                                <% badgeClass +=' green' ; %>
+                                                                    <% } else if (tag==='Update' ) { %>
+                                                                        <% badgeClass +=' yellow' ; %>
+                                                                            <% } else if (tag==='Feature' ) { %>
+                                                                                <% badgeClass +=' purple' ; %>
+                                                                                    <% } else if (tag==='Trending' ) {
+                                                                                        %>
+                                                                                        <% badgeClass +=' orange' ; %>
+                                                                                            <% } else if
+                                                                                                (tag==='Warning' ) { %>
+                                                                                                <% badgeClass
+                                                                                                    +=' warning' ; %>
+                                                                                                    <% } %>
+                                                                                                        <span
+                                                                                                            class="<%= badgeClass %>">
+                                                                                                            <%= tag %>
+                                                                                                        </span>
+                                                                                                        <% }) %>
+                                                                                                            <% } %>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 py-3">
+                    <div class="bg-light py-2 px-4 mb-3">
+                        <h3 class="m-0">Other</h3>
+                    </div>
+                    <div class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
+                        <% otherPosts.forEach(post=> { %>
+                            <div class="position-relative">
+                                <img class="img-fluid w-100" src="<%= post.picture %>" style="object-fit: cover;">
+                                <div class="overlay position-relative bg-light">
+                                    <div class="mb-2" style="font-size: 13px;">
+                                        <a class="text-dark" href="#">
+                                            <%= post.category %>
+                                        </a>
+                                        <span class="px-1">/</span>
+                                        <span>
+                                            <%= new Date(post.date).toLocaleDateString() %>
+                                        </span>
+                                    </div>
+                                    <a class="h4 m-0 text-dark" href="/post/<%= post._id %>">
+                                        <%= post.title %>
+                                    </a>
+                                    <div class="mt-2">
+                                        <% if (post.tags && post.tags.length> 0) { %>
+                                            <% post.tags.forEach(tag=> { %>
+                                                <% let badgeClass='custom-badge' ; %>
+                                                    <% if (tag==='Important' ) { %>
+                                                        <% badgeClass +=' red' ; %>
+                                                            <% } else if (tag==='New' ) { %>
+                                                                <% badgeClass +=' green' ; %>
+                                                                    <% } else if (tag==='Update' ) { %>
+                                                                        <% badgeClass +=' yellow' ; %>
+                                                                            <% } else if (tag==='Feature' ) { %>
+                                                                                <% badgeClass +=' purple' ; %>
+                                                                                    <% } else if (tag==='Trending' ) {
+                                                                                        %>
+                                                                                        <% badgeClass +=' orange' ; %>
+                                                                                            <% } else if
+                                                                                                (tag==='Warning' ) { %>
+                                                                                                <% badgeClass
+                                                                                                    +=' warning' ; %>
+                                                                                                    <% } %>
+                                                                                                        <span
+                                                                                                            class="<%= badgeClass %>">
+                                                                                                            <%= tag %>
+                                                                                                        </span>
+                                                                                                        <% }) %>
+                                                                                                            <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                </div>
+
+                <!-- Repeat similar structure for other categories if needed -->
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- Category News Slider End -->
+
+
+    <!-- Category News Slider Start -->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <!-- Programming Posts Carousel -->
+                <div class="col-lg-6 py-3">
+                    <div class="bg-light py-2 px-4 mb-3">
+                        <h3 class="m-0">Programming</h3>
+                    </div>
+                    <div class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
+                        <% programmingPosts.forEach(post=> { %>
+                            <div class="position-relative">
+                                <img class="img-fluid w-100" src="<%= post.picture %>" style="object-fit: cover;">
+                                <div class="overlay position-relative bg-light">
+                                    <div class="mb-2" style="font-size: 13px;">
+                                        <a href="#">
+                                            <%= post.category %>
+                                        </a>
+                                        <span class="px-1">/</span>
+                                        <span>
+                                            <%= post.date.toDateString() %>
+                                        </span>
+                                    </div>
+                                    <a class="h4 m-0" href="/post/<%= post._id %>">
+                                        <%= post.title %>
+                                    </a>
+                                    <div class="mt-2">
+                                        <% if (post.tags && post.tags.length> 0) { %>
+                                            <% post.tags.forEach(tag=> { %>
+                                                <% let badgeClass='custom-badge' ; %>
+                                                    <% if (tag==='Important' ) { %>
+                                                        <% badgeClass +=' red' ; %>
+                                                            <% } else if (tag==='New' ) { %>
+                                                                <% badgeClass +=' green' ; %>
+                                                                    <% } else if (tag==='Update' ) { %>
+                                                                        <% badgeClass +=' yellow' ; %>
+                                                                            <% } else if (tag==='Feature' ) { %>
+                                                                                <% badgeClass +=' purple' ; %>
+                                                                                    <% } else if (tag==='Trending' ) {
+                                                                                        %>
+                                                                                        <% badgeClass +=' orange' ; %>
+                                                                                            <% } else if
+                                                                                                (tag==='Warning' ) { %>
+                                                                                                <% badgeClass
+                                                                                                    +=' warning' ; %>
+                                                                                                    <% } %>
+                                                                                                        <span
+                                                                                                            class="<%= badgeClass %>">
+                                                                                                            <%= tag %>
+                                                                                                        </span>
+                                                                                                        <% }) %>
+                                                                                                            <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+                </div>
+
+                <!-- Writing Posts Carousel -->
+                <div class="col-lg-6 py-3">
+                    <div class="bg-light py-2 px-4 mb-3">
+                        <h3 class="m-0">Writing</h3>
+                    </div>
+                    <div class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
+                        <% writingPosts.forEach(post=> { %>
+                            <div class="position-relative">
+                                <img class="img-fluid w-100" src="<%= post.picture %>" style="object-fit: cover;">
+                                <div class="overlay position-relative bg-light">
+                                    <div class="mb-2" style="font-size: 13px;">
+                                        <a href="#">
+                                            <%= post.category %>
+                                        </a>
+                                        <span class="px-1">/</span>
+                                        <span>
+                                            <%= post.date.toDateString() %>
+                                        </span>
+                                    </div>
+                                    <a class="h4 m-0" href="/post/<%= post._id %>">
+                                        <%= post.title %>
+                                    </a>
+                                    <div class="mt-2">
+                                        <% if (post.tags && post.tags.length> 0) { %>
+                                            <% post.tags.forEach(tag=> { %>
+                                                <% let badgeClass='custom-badge' ; %>
+                                                    <% if (tag==='Important' ) { %>
+                                                        <% badgeClass +=' red' ; %>
+                                                            <% } else if (tag==='New' ) { %>
+                                                                <% badgeClass +=' green' ; %>
+                                                                    <% } else if (tag==='Update' ) { %>
+                                                                        <% badgeClass +=' yellow' ; %>
+                                                                            <% } else if (tag==='Feature' ) { %>
+                                                                                <% badgeClass +=' purple' ; %>
+                                                                                    <% } else if (tag==='Trending' ) {
+                                                                                        %>
+                                                                                        <% badgeClass +=' orange' ; %>
+                                                                                            <% } else if
+                                                                                                (tag==='Warning' ) { %>
+                                                                                                <% badgeClass
+                                                                                                    +=' warning' ; %>
+                                                                                                    <% } %>
+                                                                                                        <span
+                                                                                                            class="<%= badgeClass %>">
+                                                                                                            <%= tag %>
+                                                                                                        </span>
+                                                                                                        <% }) %>
+                                                                                                            <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- Category News Slider End -->
+
+
+    <!-- News With Sidebar Start -->
+
+    </div>
+    <!-- News With Sidebar End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-light pt-5 px-sm-3 px-md-5">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <a href="index.html" class="navbar-brand">
+                    <h1 class="mb-2 mt-n2 display-5 text-uppercase"><span class="text-primary">News</span>Room</h1>
+                </a>
+                <p>Volup amet magna clita tempor. Tempor sea eos vero ipsum. Lorem lorem sit sed elitr sed kasd et</p>
+                <div class="d-flex justify-content-start mt-4">
+                    <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                        href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                        href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                        href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                        href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                        href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="/theme/lib/easing/easing.min.js"></script>
+    <script src="/theme/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="/theme/mail/jqBootstrapValidation.min.js"></script>
+    <script src="/theme/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/theme/js/main.js"></script>
+</body>
+
+</html>
